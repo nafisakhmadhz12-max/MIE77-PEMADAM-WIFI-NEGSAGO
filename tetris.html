@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mie77</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E25822;
+            --secondary: #F5A623;
+            --dark: #2A2A2A;
+            --light: #FFF9F0;
+            --gray: #757575;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ========== HEADER dengan Logo Gambar ========== */
+        header {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* AREA LOGO - Logo berupa gambar */
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+        .logo-img {
+            width: 60px; /* Sesuaikan ukuran logo */
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 10px;
+            object-fit: contain;
+            animation: float 3s ease-in-out infinite; /* Animasi mengambang */
+        }
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .logo-text .slogan {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ========== ANIMASI ========== */
+        @keyframes float { /* Animasi mengambang untuk logo */
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .menu-item { animation: fadeInUp 0.6s ease forwards; opacity: 0; }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('PEMADAM WIFI NEGSAGO.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 0 100px;
+            margin-top: 80px;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        /* ========== MENU SECTION ========== */
+        .menu-section { padding: 80px 0; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideInLeft 1s ease;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+        }
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+            animation: slideInLeft 1s ease 0.2s both;
+        }
+        .filter-btn {
+            padding: 10px 25px;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .menu-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+        .menu-item-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        .menu-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .menu-item:hover .menu-item-img img {
+            transform: scale(1.08);
+        }
+        .menu-item-content { padding: 20px; }
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .menu-item-title h3 { font-size: 1.3rem; }
+        .price { color: var(--primary); font-weight: 700; font-size: 1.2rem; }
+        .menu-item p { color: var(--gray); margin-bottom: 15px; }
+        .add-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .add-btn:hover { background: #c44a1c; }
+
+        /* ========== ANIMASI RAMEN BERPUTAR ========== */
+        .ramen-animation-container {
+            width: 120px;
+            height: 120px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        .ramen-animation-container img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            animation: spin 8s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero { padding: 150px 0 80px; }
+            .hero h2 { font-size: 2.2rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .logo-img { width: 50px; height: 50px; }
+            .logo-text h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER dengan Logo Gambar -->
+    <header>
+        <div class="container header-content">
+            <!-- AREA LOGO DENGAN GAMBAR -->
+            <div class="logo-area">
+                <!-- GANTI SRC LOGO DI BAWAH INI DENGAN URL GAMBAR ANDA -->
+                <img src="PEMADAM WIFI NEGSAGO.jpeg" alt="Logo Ramen Delight" class="logo-img">
+                <div class="logo-text">
+                    <h1>Mie77</h1>
+                    <p class="slogan">Pemadam Wifi Negsago</p>
+                </div>
+            </div>
+            
+            <nav>
+                <a href="#menu" class="filter-btn">Menu</a>
+                <a href="#contact" class="filter-btn">Kontak</a>
+                <span class="cart-icon" style="margin-left:20px;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount">0</span>
+                </span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h2>Ramen Premium<br>Diantar Langsung ke Anda</h2>
+            <p>Nikmati kelezatan ramen dengan resep rahasia dari chef berpengalaman kami. Pesan online, kami antar dalam kondisi terbaik.</p>
+            
+            <!-- Animasi Ramen Berputar -->
+            <div class="ramen-animation-container">
+                <img src="PEMADAM WIFI NEGSAGO.jpeg" alt="Animasi Ramen">
+            </div>
+            
+            <a href="#menu" class="add-btn" style="width:auto; display:inline-block; padding:15px 30px; margin-top:20px;">Lihat Menu Lengkap</a>
+        </div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Menu Spesial Ramen</h2>
+                <p>Pilih favoritmu dari berbagai varian ramen kami</p>
+            </div>
+            
+            <div class="menu-filters">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="original">Original</button>
+                <button class="filter-btn" data-filter="spicy">Pedas</button>
+                <button class="filter-btn" data-filter="veggie">Vegetarian</button>
+            </div>
+            
+            <div class="menu-grid" id="menuGrid">
+                <!-- Item menu akan dimuat oleh JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <!-- Logo di footer (gunakan gambar yang sama atau berbeda) -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/5787/5787016.png" alt="Logo Ramen Delight">
+                    <h3>Mie77</h3>
+                    <p class="slogan">Pemadam Wifi Negsago</p>
+                    <p>Sejak 2023, kami berkomitmen menghadirkan ramen terbaik dengan bahan-bahan pilihan.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Kontak Kami</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Ramen Delight No. 45, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> +62 812 3456 7890</p>
+                    <p><i class="fas fa-envelope"></i> order@ramendelight.com</p>
+                    <p><i class="fas fa-clock"></i> Buka Setiap Hari: 10.00 - 22.00</p>
+                </div>
+                
+                <div>
+                    <h4>Layanan</h4>
+                    <p><a href="#menu" style="color:#bbb; text-decoration:none;">Pesan Online</a></p>
+                    <p><a href="#" style="color:#bbb; text-decoration:none;">Delivery Area</a></p>
+                    <p><a href="#" style="color:#bbb; text-decoration:none;">Catering</a></p>
+                    <p><a href="#" style="color:#bbb; text-decoration:none;">FAQ</a></p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Ramen Delight. Hak Cipta Dilindungi. | Website by Ramen Delight Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== DATA MENU ==========
+        const menuData = [
+            { id:1, name:"Shoyu Ramen", price:45000, desc:"Kaldu ayam dengan kecap shoyu autentik, dilengkapi chashu, telur rebus, dan nori.", img:"https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"original" },
+            { id:2, name:"Spicy Miso Ramen", price:50000, desc:"Kaldu pedas dengan pasta miso spesial, daging cincang, jagung manis, dan daun bawang.", img:"https://images.unsplash.com/photo-1617421753170-46511b8d578c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"spicy" },
+            { id:3, name:"Tonkotsu Ramen", price:55000, desc:"Kaldu tulang babi kental yang dimasak 12 jam, chashu, jamur, telur setengah matang.", img:"https://images.unsplash.com/photo-1557872943-16a5ac26437e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"original" },
+            { id:4, name:"Vegetarian Ramen", price:40000, desc:"Kaldu jamur shiitake yang gurih, tofu, sayuran segar, nori, dan wijen.", img:"https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"veggie" },
+            { id:5, name:"Black Garlic Ramen", price:58000, desc:"Minyak bawang putih hitam aromatik, chashu tebal, jamur, telur asin, daun bawang.", img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"original" },
+            { id:6, name:"Vegan Miso Ramen", price:44000, desc:"Kaldu sayuran dengan miso merah, berbagai sayuran musiman, tofu goreng, dan nori.", img:"https://images.unsplash.com/photo-1615873968403-89e068629265?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"veggie" },
+            { id:7, name:"Chicken Paitan Ramen", price:52000, desc:"Kaldu ayam putih yang creamy, ayam panggang, jagung, bamboo shoot, dan nori.", img:"https://images.unsplash.com/photo-1623341214825-9f4f963727da?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"original" },
+            { id:8, name:"Extra Spicy Ramen", price:53000, desc:"Level pedas maksimal dengan cabai khas Jepang, daging cincang, telur, dan sayuran.", img:"https://images.unsplash.com/photo-1630840621303-9148a7b1d7b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80", cat:"spicy" }
+        ];
+
+        // ========== VARIABEL & ELEMEN ==========
+        let cartCount = 0;
+        const menuGrid = document.getElementById('menuGrid');
+        const cartCountEl = document.getElementById('cartCount');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // ========== TAMPILKAN MENU ==========
+        function displayMenu(filter = 'all') {
+            menuGrid.innerHTML = '';
+            const filtered = filter === 'all' ? menuData : menuData.filter(item => item.cat === filter);
+            
+            filtered.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'menu-item';
+                div.style.animationDelay = `${index * 0.1}s`;
+                div.innerHTML = `
+                    <div class="menu-item-img">
+                        <img src="${item.img}" alt="${item.name}" loading="lazy">
+                    </div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>${item.name}</h3>
+                            <span class="price">Rp ${item.price.toLocaleString('id-ID')}</span>
+                        </div>
+                        <p>${item.desc}</p>
+                        <button class="add-btn" onclick="addToCart(${item.id})">+ Tambah ke Keranjang</button>
+                    </div>
+                `;
+                menuGrid.appendChild(div);
+            });
+        }
+
+        // ========== FILTER MENU ==========
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                displayMenu(this.dataset.filter);
+            });
+        });
+
+        // ========== FUNGSI KERANJANG ==========
+        function addToCart(itemId) {
+            cartCount++;
+            cartCountEl.textContent = cartCount;
+            
+            // Animasi tombol keranjang
+            cartCountEl.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                cartCountEl.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Ambil nama item yang ditambahkan
+            const item = menuData.find(i => i.id === itemId);
+            
+            // Tampilkan notifikasi
+            showNotification(`${item.name} ditambahkan ke keranjang!`);
+        }
+
+        // ========== NOTIFIKASI ==========
+        function showNotification(message) {
+            // Cek apakah sudah ada notifikasi
+            let notification = document.querySelector('.notification');
+            if (notification) {
+                notification.remove();
+            }
+            
+            // Buat elemen notifikasi baru
+            notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            // Styling notifikasi
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--primary);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                z-index: 9999;
+                animation: fadeInUp 0.3s ease;
+                min-width: 300px;
+            `;
+            
+            notification.querySelector('button').style.cssText = `
+                background: transparent;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+                margin-left: 15px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Hapus notifikasi setelah 3 detik
+            setTimeout(() => {
+                if (notification && notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        // ========== ANIMASI SCROLL UNTUK HEADER ==========
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // ========== INISIALISASI ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            displayMenu(); // Tampilkan semua menu awal
+            
+            // Tambahkan animasi hover pada logo
+            const logoImg = document.querySelector('.logo-img');
+            logoImg.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            logoImg.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            // Animasi untuk elemen saat scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observasi semua menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
